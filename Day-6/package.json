@@ -11,12 +11,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-<<<<<<< HEAD
     "process": "^0.11.10",
     "parcel": "^2.10.0"
-=======
-    "parcel-bundler": "^1.12.5"
->>>>>>> eee4cdd9cdd2f6b1d74676dc0f4d1b8387c30103
   },
   "dependencies": {
     "react": "^18.2.0",
