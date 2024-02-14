@@ -1,5 +1,4 @@
 import { CDN_URL } from "../utills/constants";
-import { Link } from "react-router-dom";
 
 const RestaurantCard = (props) => {
   const { resData } = props;

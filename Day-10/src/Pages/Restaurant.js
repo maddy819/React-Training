@@ -1,36 +1,21 @@
-import { useEffect, useState } from "react";
 import Shimmer from "../components/Shimmer";
 import { useParams } from "react-router-dom";
-import { SWIGGY_MENU_URL } from "../utills/constants";
+import useRestaurantMenu from "../hooks/UseRestaurantMenu";
 
 const Restaurant = (props) => {
-  const [restaurantInfo, setRestaurantInfo] = useState(null);
   const { resId } = useParams();
+  const restaurantInfo = useRestaurantMenu(resId);
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
+  const { name, areaName, cuisines, sla, avgRating } =
+    restaurantInfo?.cards[0]?.card?.card?.info;
 
-  const fetchMenu = async () => {
-    const data = await fetch(`${SWIGGY_MENU_URL}/${resId}`);
-    const jsonData = await data.json();
-    setRestaurantInfo(jsonData?.data);
-  };
-
-  console.log("restaurantData", restaurantInfo);
+  const itemsCards =
+    restaurantInfo?.cards[2]?.groupedCard.cardGroupMap?.REGULAR?.cards[3]?.card
+      ?.card?.itemCards;
 
   if (restaurantInfo === null) {
     return <Shimmer />;
   }
-  const { name, areaName, cuisines, sla, avgRating } =
-    restaurantInfo?.cards[0]?.card?.card?.info;
-  const itemsCards =
-    restaurantInfo?.cards[2]?.groupedCard.cardGroupMap?.REGULAR?.cards[3]?.card
-      ?.card?.itemCards;
-  console.log(
-    "itemsCards",
-    restaurantInfo?.cards[2]?.groupedCard.cardGroupMap?.REGULAR?.cards
-  );
 
   return (
     <div className="bg-white" key={props.key}>
