@@ -35,6 +35,8 @@ const Home = () => {
     setRestaurantsFiltered(listOfRestaurants);
   };
 
+  console.log("Home Executed");
+
   return (
     <>
       {listOfRestaurants?.length === 0 ? (
