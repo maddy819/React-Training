@@ -1,5 +1,5 @@
-import Shimmer from "../components/Shimmer";
 import { useParams } from "react-router-dom";
+import Shimmer from "../components/Shimmer";
 import useRestaurantMenu from "../hooks/UseRestaurantMenu";
 
 const Restaurant = (props) => {
@@ -7,7 +7,7 @@ const Restaurant = (props) => {
   const restaurantInfo = useRestaurantMenu(resId);
 
   const { name, areaName, cuisines, sla, avgRating } =
-    restaurantInfo?.cards[0]?.card?.card?.info;
+    restaurantInfo?.cards[0]?.card?.card?.info || {};
 
   const itemsCards =
     restaurantInfo?.cards[2]?.groupedCard.cardGroupMap?.REGULAR?.cards[3]?.card
@@ -34,7 +34,7 @@ const Restaurant = (props) => {
       <h1>Menu</h1>
       <ul>
         {itemsCards?.map((itemCard) => (
-          <li>{itemCard?.card?.info?.name}</li>
+          <li key={itemCard?.card?.info?.id}>{itemCard?.card?.info?.name}</li>
         ))}
       </ul>
     </div>

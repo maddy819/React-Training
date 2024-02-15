@@ -1,18 +1,21 @@
 import ReactDOM from "react-dom/client";
-import Header from "./components/Header";
-import Home from "./Pages/Home";
-import Footer from "./components/Footer";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import About from "./Pages/About";
-import Contact from "./Pages/Contact";
-
+import { lazy, Suspense } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faHeart, faCopyright } from "@fortawesome/free-solid-svg-icons";
-import Restaurant from "./Pages/Restaurant";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+
+import Home from "./Pages/Home";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Error from "./Pages/Error";
-import Cart from "./Pages/Cart";
-import Checkout from "./Pages/Checkout";
+import Loading from "./components/Loading";
+
+const About = lazy(() => import("./Pages/About"));
+const Contact = lazy(() => import("./Pages/Contact"));
+const Restaurant = lazy(() => import("./Pages/Restaurant"));
+const Cart = lazy(() => import("./Pages/Cart"));
+const Checkout = lazy(() => import("./Pages/Checkout"));
 
 library.add(fab, faHeart, faCopyright);
 
@@ -37,23 +40,43 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
-        element: <Contact />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Contact />
+          </Suspense>
+        ),
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Cart />
+          </Suspense>
+        ),
       },
       {
         path: "/checkout",
-        element: <Checkout />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Checkout />
+          </Suspense>
+        ),
       },
       {
         path: "/restaurants/:resId",
-        element: <Restaurant />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Restaurant />
+          </Suspense>
+        ),
       },
     ],
     errorElement: <Error />,

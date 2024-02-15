@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import useRestaurantGet from "../hooks/useRestaurantGet";
 import Shimmer from "../components/Shimmer";
 import Restaurants from "../components/Restaurants";
 import SearchAndFilter from "../components/SearchAndFilter";
 
 const Home = () => {
+  const textSearch = useRef();
   const [searchText, setSearchText] = useState("");
   const [listOfRestaurants, filteredRestaurants, setRestaurantsFiltered] =
-    useRestaurantGet();
+    useRestaurantGet() || [];
+
+  console.log(filteredRestaurants);
 
   const setText = (e) => {
     setSearchText(e?.target?.value);

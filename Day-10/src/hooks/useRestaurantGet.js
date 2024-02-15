@@ -17,7 +17,7 @@ const useRestaurantGet = () => {
     try {
       const data = await fetch(SWIGGY_URL);
       const dataJSON = await data.json();
-      console.log("dataJSON", dataJSON);
+      //console.log("dataJSON", dataJSON);
 
       setRestaurants(
         dataJSON?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
