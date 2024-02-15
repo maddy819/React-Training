@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import useRestaurantGet from "../hooks/useRestaurantGet";
 import Shimmer from "../components/Shimmer";
 import Restaurants from "../components/Restaurants";
@@ -6,19 +6,16 @@ import SearchAndFilter from "../components/SearchAndFilter";
 
 const Home = () => {
   const textSearch = useRef();
-  const [searchText, setSearchText] = useState("");
   const [listOfRestaurants, filteredRestaurants, setRestaurantsFiltered] =
     useRestaurantGet() || [];
-
-  const setText = (e) => {
-    setSearchText(e?.target?.value);
-  };
 
   const SearchRestaurant = (filterType) => {
     if (filterType === "Search") {
       setRestaurantsFiltered(
         listOfRestaurants.filter((res) =>
-          res.info?.name?.toLowerCase().includes(searchText.toLowerCase())
+          res.info?.name
+            ?.toLowerCase()
+            .includes(textSearch.current.value.toLowerCase())
         )
       );
     }
@@ -31,7 +28,7 @@ const Home = () => {
   };
 
   const ResetSearch = () => {
-    setSearchText("");
+    textSearch.current.value = "";
     setRestaurantsFiltered(listOfRestaurants);
   };
 
@@ -42,11 +39,10 @@ const Home = () => {
       ) : (
         <div className="bg-white">
           <SearchAndFilter
-            inputChange={(e) => setText(e)}
+            setRef={textSearch}
             searchOnSelect={() => SearchRestaurant("Search")}
             resetSearchOnSelect={() => ResetSearch()}
             filterOnSelect={() => SearchRestaurant("Filter")}
-            searchTextVal={searchText}
           ></SearchAndFilter>
 
           <Restaurants filteredRestaurants={filteredRestaurants}>
