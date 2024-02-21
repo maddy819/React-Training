@@ -4,12 +4,14 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faHeart, faCopyright } from "@fortawesome/free-solid-svg-icons";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import SearchContextProvider from "../src/context/SearchContext";
 
 import Home from "./Pages/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Error from "./Pages/Error";
 import Loading from "./components/Loading";
+import BackToTop from "./components/BackToTop";
 
 const About = lazy(() => import("./Pages/About"));
 const Contact = lazy(() => import("./Pages/Contact"));
@@ -21,11 +23,18 @@ library.add(fab, faHeart, faCopyright);
 
 const AppLayout = () => {
   return (
-    <div className="font-Acme layout md:container sm:container md:mx-auto border-2 md:max-w-6xl my-8 md:my-8 bg-white rounded-t-lg rounded-b-lg shadow-2xl">
-      <Header />
-      <Outlet />
-      <Footer />
-    </div>
+    <>
+      <div className="font-Acme layout md:container sm:container md:mx-auto border-2 md:max-w-6xl my-8 md:my-8 bg-white rounded-t-lg rounded-b-lg shadow-2xl">
+        <SearchContextProvider>
+          <Header />
+          <Outlet />
+          <Footer />
+        </SearchContextProvider>
+      </div>
+      <div>
+        <BackToTop className="px-10">Back To Top</BackToTop>
+      </div>
+    </>
   );
 };
 

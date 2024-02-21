@@ -1,39 +1,16 @@
-import { useRef } from "react";
-import useRestaurantGet from "../hooks/useRestaurantGet";
-import useOnlineStatus from "../hooks/useOnlineStatus";
+import { useContext } from "react";
 
+import { SearchContext } from "../context/SearchContext";
+import useOnlineStatus from "../hooks/useOnlineStatus";
 import Shimmer from "../components/Shimmer";
 import Restaurants from "../components/Restaurants";
 import SearchAndFilter from "../components/SearchAndFilter";
 
 const Home = () => {
-  const textSearch = useRef();
+  const { RestaurantsList } = useContext(SearchContext);
   const isOnline = useOnlineStatus();
-  const [listOfRestaurants, filteredRestaurants, setRestaurantsFiltered] =
-    useRestaurantGet() || [];
 
-  const SearchRestaurant = (filterType) => {
-    if (filterType === "Search") {
-      setRestaurantsFiltered(
-        listOfRestaurants.filter((res) =>
-          res.info?.name
-            ?.toLowerCase()
-            .includes(textSearch.current.value.toLowerCase())
-        )
-      );
-    }
-
-    if (filterType === "Filter") {
-      setRestaurantsFiltered(
-        listOfRestaurants.filter((res) => res.info?.avgRating > 4.4)
-      );
-    }
-  };
-
-  const ResetSearch = () => {
-    textSearch.current.value = "";
-    setRestaurantsFiltered(listOfRestaurants);
-  };
+  console.log("Home Executed");
 
   if (isOnline === false)
     return (
@@ -42,20 +19,13 @@ const Home = () => {
 
   return (
     <>
-      {listOfRestaurants?.length === 0 ? (
+      {RestaurantsList?.length === 0 ? (
         <Shimmer />
       ) : (
         <div className="bg-white">
-          <SearchAndFilter
-            setRef={textSearch}
-            searchOnSelect={() => SearchRestaurant("Search")}
-            resetSearchOnSelect={() => ResetSearch()}
-            filterOnSelect={() => SearchRestaurant("Filter")}
-          ></SearchAndFilter>
+          <SearchAndFilter></SearchAndFilter>
 
-          <Restaurants filteredRestaurants={filteredRestaurants}>
-            Top Restaurants
-          </Restaurants>
+          <Restaurants>Top Restaurants</Restaurants>
         </div>
       )}
     </>

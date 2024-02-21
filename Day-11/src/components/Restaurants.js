@@ -1,7 +1,11 @@
+import { useContext } from "react";
+
 import RestaurantCard from "../components/RestaurantCard";
 import WithOpenLabel from "../components/WithOpenLabel";
+import { SearchContext } from "../context/SearchContext";
 
-const Restaurants = ({ children, filteredRestaurants }) => {
+const Restaurants = ({ children }) => {
+  const { RestaurantsFiltered } = useContext(SearchContext);
   const RestaurantCardOpen = WithOpenLabel(RestaurantCard);
 
   return (
@@ -10,8 +14,8 @@ const Restaurants = ({ children, filteredRestaurants }) => {
         <h1>{children}</h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-5">
-        {filteredRestaurants &&
-          filteredRestaurants.map((resObj) =>
+        {RestaurantsFiltered &&
+          RestaurantsFiltered.map((resObj) =>
             resObj?.info?.isOpen ? (
               <RestaurantCardOpen
                 className="rounded-lg overflow-hidden shadow-md shadow-[#8EBE43] border-4 border-[#8EBE43] hover:border-4 hover:border-[#8EBE43] hover:shadow-2xl hover:shadow-[#8EBE43]"

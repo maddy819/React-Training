@@ -1,7 +1,10 @@
+import { memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  console.log("Footer Executed");
+
   return (
     <div className="footer flex p-2 border-slate-300 h-12 text-white justify-center items-center rounded-b-lg bg-gradient-to-br from-[#8EBE43] to-lime-300">
       <span>
@@ -21,4 +24,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);
