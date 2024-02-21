@@ -5,8 +5,6 @@ import Reset from "../components/Reset";
 import Search from "../components/Search";
 
 const SearchAndFilter = () => {
-  console.log("SearchAndFilter Executed");
-
   return (
     <div className="filter grid grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-5">
       <Search>Search</Search>

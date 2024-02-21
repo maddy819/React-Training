@@ -3,8 +3,6 @@ import { memo, useRef } from "react";
 const BackToTop = ({ children, ...props }) => {
   const backToTop = useRef();
 
-  console.log(backToTop);
-
   const scrollFunction = () => {
     if (
       document.body.scrollTop > 20 ||
@@ -22,8 +20,6 @@ const BackToTop = ({ children, ...props }) => {
   };
 
   window.onscroll = () => scrollFunction();
-
-  console.log("BackToTop Executed");
 
   return (
     <button

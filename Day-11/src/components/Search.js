@@ -4,8 +4,6 @@ import { SearchContext } from "../context/SearchContext";
 const Search = ({ children }) => {
   const { SearchText, RestaurantSearch } = useContext(SearchContext);
 
-  console.log("Search Executed");
-
   return (
     <div className="m-4">
       <input

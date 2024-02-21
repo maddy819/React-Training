@@ -10,8 +10,6 @@ const Home = () => {
   const { RestaurantsList } = useContext(SearchContext);
   const isOnline = useOnlineStatus();
 
-  console.log("Home Executed");
-
   if (isOnline === false)
     return (
       <h1>Looks like you are offline, please check your internet connection</h1>

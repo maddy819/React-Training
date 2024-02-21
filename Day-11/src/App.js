@@ -23,18 +23,14 @@ library.add(fab, faHeart, faCopyright);
 
 const AppLayout = () => {
   return (
-    <>
-      <div className="font-Acme layout md:container sm:container md:mx-auto border-2 md:max-w-6xl my-8 md:my-8 bg-white rounded-t-lg rounded-b-lg shadow-2xl">
-        <SearchContextProvider>
-          <Header />
-          <Outlet />
-          <Footer />
-        </SearchContextProvider>
-      </div>
-      <div>
+    <div className="font-Acme layout md:container sm:container md:mx-auto border-2 md:max-w-6xl my-8 md:my-8 bg-white rounded-t-lg rounded-b-lg shadow-2xl">
+      <SearchContextProvider>
+        <Header />
+        <Outlet />
+        <Footer />
         <BackToTop className="px-10">Back To Top</BackToTop>
-      </div>
-    </>
+      </SearchContextProvider>
+    </div>
   );
 };
 

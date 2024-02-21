@@ -2,13 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { CDN_URL } from "../utills/constants";
 
 const RestaurantCard = ({ resData, ...props }) => {
-  let navigate = useNavigate(); 
+  let navigate = useNavigate();
   const { name, cuisines, cloudinaryImageId, costForTwo, sla, avgRating } =
     resData?.info || {};
 
   const goToRestaurant = () => {
     const resUrl = `/restaurants/${resData?.info?.id}`;
-    console.log(resUrl);
     navigate(resUrl);
   };
 
