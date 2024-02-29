@@ -20,7 +20,7 @@ const RestaurantCard = ({ resData, ...props }) => {
           alt="res-logo"
         />
       </div>
-      <div className="px-4 py-4 text-wrap break-words relative">
+      <div className="px-4 py-4 text-wrap break-words relative bg-white">
         <div className="text-gray-600 text-justify h-52">
           <h3 className="font-bold">{name}</h3>
           <h4>{cuisines?.join(",")}</h4>

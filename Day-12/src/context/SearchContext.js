@@ -39,7 +39,7 @@ export default SearchContextProvider = ({ children }) => {
     setRestaurantsFiltered(listOfRestaurants);
   };
 
-  SearchContextVal = {
+  const SearchContextVal = {
     SearchText: textSearch,
     RestaurantsList: listOfRestaurants,
     RestaurantsFiltered: filteredRestaurants,

@@ -13,7 +13,7 @@ const Restaurants = ({ children }) => {
       <div className="text-4xl font-extrabold dark:text-white mb-5">
         <h1>{children}</h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-5 hover:transition hover:[&>*:nth-child(even)]:duration-500 hover:[&>*:nth-child(odd)]:duration-500 hover:ease-out hover:[&>*:nth-child(even)]:rotate-3 hover:[&>*:nth-child(odd)]:-rotate-3">
         {RestaurantsFiltered &&
           RestaurantsFiltered.map((resObj) =>
             resObj?.info?.isOpen ? (
